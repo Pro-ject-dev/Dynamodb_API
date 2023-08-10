@@ -12,12 +12,14 @@ READ
 
 UPDATE
 
-![Screenshot (195)](https://github.com/Pro-ject-dev/Dynamodb_API/assets/138247328/8193363f-a92c-464a-b9f9-2dcae56d9ae7)
+![Screenshot (194)](https://github.com/Pro-ject-dev/Dynamodb_API/assets/138247328/b2f1fb3a-1268-43f4-bec2-f4c4b1a274a3)
 
 DELETE
 
+![Screenshot (195)](https://github.com/Pro-ject-dev/Dynamodb_API/assets/138247328/8193363f-a92c-464a-b9f9-2dcae56d9ae7)
+
 ![Screenshot (196)](https://github.com/Pro-ject-dev/Dynamodb_API/assets/138247328/9fd5a988-77ab-43d2-8058-258989323e12)
 
-![Screenshot (194)](https://github.com/Pro-ject-dev/Dynamodb_API/assets/138247328/b2f1fb3a-1268-43f4-bec2-f4c4b1a274a3)
+
 
 
