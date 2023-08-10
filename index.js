@@ -18,7 +18,6 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 // CREATE
 
 app.post('/add', (req, res) => {
-  console.log('Received POST request to add student:', req.body);
   const student = {
     SPR_NO: req.body.id,
     name: req.body.name,
@@ -33,10 +32,8 @@ app.post('/add', (req, res) => {
 
   docClient.put(params, (err, data) => {
     if (err) {
-      console.error('Error adding student:', err);
       res.status(500).json({ error: 'Could not add student' });
     } else {
-      console.log('Student added successfully:', data);
       res.status(200).json({ message: 'Student added successfully' });
     }
   });
@@ -51,18 +48,17 @@ app.get('/get',(req,res)=>{        //------> retrieve all student's data
   }
   docClient.scan(params,(err,data)=>{
     if(data){
-      console.log(data.Items);
       res.send(data.Items);
     }
     else{
-      console.log(err);
+      res.send(err);
     }
   })
 });
 
 
 
-app.post('/get_spec', (req, res) => {   //------> retrieve specific student data          
+app.post('/get_specific', (req, res) => {   //------> retrieve specific student data          
   const params = {
     TableName: 'Student-info',
     Key: {
@@ -91,12 +87,10 @@ app.put('/update/:id', (req, res) => {
   const studentId = req.params.id;
   const { name, age, email } = req.body;
 
-  console.log('Received PUT request to update student:', studentId, req.body);
-
   const params = {
-    TableName: 'Student-info', // Replace with your table name
+    TableName: 'Student-info',
     Key: {
-      SPR_NO: studentId, // Use the student ID from URL parameters
+      SPR_NO: studentId, 
     },
     UpdateExpression: 'set #studentName = :newName, #studentAge = :newAge, #studentEmail = :newEmail',
     ExpressionAttributeNames: {
@@ -114,10 +108,8 @@ app.put('/update/:id', (req, res) => {
 
   docClient.update(params, (err, data) => {
     if (err) {
-      console.error('Error updating student:', err);
       res.status(500).json({ error: 'Could not update student' });
     } else {
-      console.log('Student updated successfully:', data);
       res.status(200).json({ message: 'Student updated successfully', updatedData: data.Attributes });
     }
   });
@@ -152,7 +144,7 @@ app.delete('/delete', async (req, res) => {    //------> delete all student's da
 
 
 
-app.delete('/delete_student', (req, res) => {   //------> delete specific student data
+app.delete('/delete_specific', (req, res) => {   //------> delete specific student data
   const studentId = req.body.id;
   const params = {
     TableName: 'Student-info',
@@ -162,10 +154,8 @@ app.delete('/delete_student', (req, res) => {   //------> delete specific studen
   };
   docClient.delete(params, (err, data) => {
     if (err) {
-      console.log(err);
       res.status(500).send("Error deleting data");
     } else {
-      console.log("Delete successful:", data);
       res.send("Delete successful");
     }
   });
@@ -173,10 +163,8 @@ app.delete('/delete_student', (req, res) => {   //------> delete specific studen
 
 
 
-  
 
-
-//api listening
+//API LISTENING
 
 app.listen(apiport, () => {
   console.log(`Server is running on port ${apiport}`);
